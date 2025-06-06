@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.3fr 1fr 0.3fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "imagenProducto introProducto"
+    "imagenProducto detallesProducto"
+    "precio caracteristicas ";
+}
+
+.imagenProducto {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  gap: 5px 5px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "imgProducto_uno imgProducto_uno imgProducto_uno"
+    "imgProducto_dos imgProducto_tres imgProducto_cuatro";
+  grid-area: imagenProducto;
+}
+
+.imgProducto_uno {
+  grid-area: imgProducto_uno;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgProducto_uno img,
+.imgProducto_dos img,
+.imgProducto_tres img,
+.imgProducto_cuatro img,
+.imgProducto_cinco img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.introProducto {
+  grid-area: introProducto;
+}
+
+.detallesProducto {
+  grid-area: detallesProducto;
+}
+
+.caracteristicas {
+  grid-area: caracteristicas;
+}
+
+.precio {
+  grid-area: precio;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.detallesProducto h2,
+.introProducto h2,
+.caracteristicas h2,
+.precio h2 {
+  color: var(--colorPrincipal);
+  font-size: var(--tamañoTitulo);
+  font-weight: var(--pesoTitulo);
+  padding-bottom: 5px;
+}
+
+.detallesProducto h3 {
+  color: var(--subtitulos);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.introProducto p,
+.detallesProducto p,
+.caracteristicas p,
+.precio p {
+  font-size: var(--tamañoTexto);
+  text-align: justify;
+  color: var(--texto);
+}
+
+.precio button {
+  border: 2px solid var(--colorPrincipal);
+  background-color: var(--colorPrincipal);
+  border-radius: 0.9em;
+  cursor: pointer;
+  width: 130px;
+  padding: 10px 20px;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+}
+
+.precio button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  fill: #fff;
+}
+
+.precio button span svg {
+  margin-right: 5px;
+}
+
+.precio button:hover {
+  background-color: var(--colorPrincipalOscuro);
+}
+
+.negrita {
+  font-weight: var(--negrita);
+}

@@ -1,0 +1,24 @@
+:root {
+  /* colores */
+  --colorPrincipalFondo: #2c403a;
+  --colorPrincipalClaro: #F23827;
+  --colorPrincipal: #F21905;
+  --colorPrincipalOscuro: #730C02;
+  --fondoTablaOcuro: #cdcdcd;
+  --fondoTabla: #f0f0f0;
+  --fondoClaro: #D9D9D9;
+  --fondoOscuro: #0D0D0D;
+  --subtitulos: #151515;
+  --texto: #2c2c2c;
+  --textpBlanco: #f8f3f3;
+  --negrita: bold;
+  /* Fuentes */
+  --fuenteGeneral: sans-serif;
+  --fuenteDetalle: serif;
+  /* Tamaños textos*/
+  --tamañoTitulo: 30px;
+  --pesoTitulo: 700;
+  --tamañoSubTitulo: 30px;
+  --pesoSubTitulo: 30px;
+  --tamañoTexto: 15px;
+}
