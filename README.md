@@ -23,4 +23,4 @@ La interfaz de usuario estan relizada con **HTML** y **CSS**, los archivos estan
 
 # Configurar el proyecto
 Para poder arracar el proyeto sera necesario contar con un BD
-se sumistra el codigo SQL con las tablas y datos de prueba para poder crear dichar BD en MySwl. se encuentra [AQUI]{}
+se sumistra el codigo SQL con las tablas y datos de prueba para poder crear dichar BD en MySwl. se encuentra [AQUI](https://github.com/lops16/App_media_library/tree/main/SQL)
