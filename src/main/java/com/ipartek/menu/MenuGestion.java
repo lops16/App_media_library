@@ -17,6 +17,7 @@ import com.ipartek.modelo.dto.Usuario;
 import com.ipartek.modelo.dto.V_Canciones;
 import com.ipartek.modelo.dto.V_Peliculas;
 import com.ipartek.modelo.dto.V_Series;
+import com.ipartek.modelo.dto.V_Usuarios;
 
 
 @WebServlet("/MenuGestion")
@@ -50,12 +51,14 @@ public class MenuGestion extends HttpServlet implements I_Constantes{
 		List<V_Series> listaSeriesUsuario = db.obtenerSeriesUsuario(id_usuario,con);
 		List<V_Peliculas> listaPeliculasUsuario = db.obtenerPeliculasUsuario(id_usuario, con);
 		List<V_Canciones> listaCancionesUsuario = db.obtenerCancionesUsuario(id_usuario, con);
+		List<V_Usuarios>listaUsuarios = db.obtenerTodosUsuarios(con);
 		System.out.println(listaSeriesUsuario);
 		db.desconectar(con);
 		
 		request.setAttribute(ATR_LISTAS_SERIES_USUARIO, listaSeriesUsuario);
 		request.setAttribute(ATR_LISTAS_PELICULAS_USUARIO, listaPeliculasUsuario);
 		request.setAttribute(ATR_LISTAS_CANCIONES_USUARIO, listaCancionesUsuario);
+		request.setAttribute(ATR_LISTAS_USUARIOS, listaUsuarios);
 	    request.getRequestDispatcher(JSP_GESTION).forward(request, response);
 	}
 

@@ -11,10 +11,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import com.ipartek.modelo.DB_Helper;
 import com.ipartek.modelo.I_Constantes;
 import com.ipartek.modelo.dto.Usuario;
+import com.ipartek.modelo.dto.V_Usuarios;
 
 
 @WebServlet("/HacerLogin")
@@ -61,9 +63,13 @@ public class HacerLogin extends HttpServlet implements I_Constantes{
 		            request.getSession().setAttribute("error", "Acceso bloquedado, esta cuenta ha sido baneda o bloqueada");
 		            ruta = JSP_LOGIN;
 		        } else {
+		            if(usuario.getFk_rol() == 1) {
+		            	request.getSession().setAttribute("usuario", usuario);
+			            ruta = JSP_GESTION;} else {request.getSession().setAttribute("usuario", usuario);
+			            ruta = JSP_INDEX; }
+		            } 
 		            
-		            request.getSession().setAttribute("usuario", usuario);
-		            ruta = JSP_INDEX;}
+		    		
 		    		session.removeAttribute("s_lista_posibles_bloqueos");
 		    	
 		    	
@@ -99,8 +105,11 @@ public class HacerLogin extends HttpServlet implements I_Constantes{
 		        
 		    }
 		    
-		    
+		    List<V_Usuarios>listaUsuarios = db.obtenerTodosUsuarios(con);
+		    System.out.println(listaUsuarios);
 		    db.desconectar(con);
+		    
+			request.setAttribute(ATR_LISTAS_USUARIOS, listaUsuarios);
 		    response.sendRedirect(ruta);
 		    
 		

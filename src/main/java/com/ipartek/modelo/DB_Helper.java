@@ -16,6 +16,7 @@ import com.ipartek.modelo.dto.Usuario;
 import com.ipartek.modelo.dto.V_Canciones;
 import com.ipartek.modelo.dto.V_Peliculas;
 import com.ipartek.modelo.dto.V_Series;
+import com.ipartek.modelo.dto.V_Usuarios;
 
 
 public class DB_Helper implements I_Constantes{
@@ -83,6 +84,33 @@ public class DB_Helper implements I_Constantes{
 	        return null;
 	    }
 	    
+	}
+	
+	public List<V_Usuarios> obtenerTodosUsuarios(Connection con) {
+		try {
+			List<V_Usuarios> lista = new ArrayList<V_Usuarios>();
+			CallableStatement cstmt = con.prepareCall(SP_OBTENER_TODOS_USUARIOS);
+			
+			cstmt.execute();
+		    ResultSet rs = cstmt.getResultSet();
+		    
+		    while (rs.next()) {
+		        V_Usuarios user = new V_Usuarios();
+		        user.setId(rs.getInt(USUARIO_ID));
+		        user.setUser(rs.getString(USUARIO_USUARIO));
+		        user.setRol(rs.getString(ROLES_ROL));
+		        
+		        lista.add(user);
+		        
+		        //lista.add()
+		    }
+		    return lista;
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public List<V_Series> obtenerTodasSeries(Connection con) {
@@ -433,6 +461,7 @@ public class DB_Helper implements I_Constantes{
 		}
 		
 	}
+	
 
 	
 

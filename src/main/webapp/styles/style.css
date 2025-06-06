@@ -51,9 +51,10 @@ nav a {
 	color: var(--colorPrincipal);
 	font-size: 22px;
 	font-weight: bolder;
-
+	border-bottom: 5px solid var(--colorPrincipalFondo);
 	width: 100%;
 	height: 48px;
+	
 
 	text-decoration: none;
 	display: flex;
@@ -62,10 +63,15 @@ nav a {
 	align-items: center;
 }
 
+nav a svg {
+	fill: var(--colorPrincipal);
+	width: 10%
+}
+
 
 nav a:hover {
-	background-color: var(--colorPrincipalOscuro);
 	color: var(--colorPrincipalClaro);
+	border-bottom: 5px solid var(--colorPrincipal);
 }
 
 nav a img {

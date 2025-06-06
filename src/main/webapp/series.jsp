@@ -15,8 +15,8 @@
     <meta charset="UTF-8">
     <title>IparMedia-Series</title>
     <link rel="stylesheet" href="styles/style_variables.css" />
-    <link rel="stylesheet" href="styles/style_series.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/style_series.css" />
 </head>
 <body>
 

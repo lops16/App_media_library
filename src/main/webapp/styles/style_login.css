@@ -1,4 +1,10 @@
 @charset "UTF-8";
+main{
+	background: #F21905;
+background: radial-gradient(circle, rgba(242, 25, 5, 1) 0%, rgba(13, 13, 13, 1) 48%);
+  	padding: 10px;
+  	min-height: calc(100vh - 40px );
+}
 .control_inventario {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
@@ -8,11 +14,12 @@
 }
 
 .mod_container{
+	background: none;
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 500px;
+	height: calc(100vh - 40px );
 }
 .form_container {
 	grid-area: form_container;
@@ -33,14 +40,16 @@
 .form_container_login {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	width: 30%;
-	height: auto;
+	width: 25%;
+	height: 330px;
+	border-radius: 10px;
 }
 
 .form_box {
 	height: 180px;
-	width: 80%;
+	width: 70%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

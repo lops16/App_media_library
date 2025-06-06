@@ -1,9 +1,17 @@
 @charset "UTF-8";
+
+main{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
 .cuadricula {
     display: grid; 
     grid-template-columns: repeat(4, auto);
     grid-template-rows: auto; 
-    gap: 10px 10px; 
+    gap: 20px 20px; 
+    width: 90%;
 }
 
 .cuadricula article{

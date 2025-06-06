@@ -91,5 +91,6 @@ public interface I_Constantes {
 	String ATR_LISTAS_PELICULAS_USUARIO = "lista_peliculas_usuario";
 	String ATR_LISTAS_CANCIONES = "lista_canciones";
 	String ATR_LISTAS_CANCIONES_USUARIO = "lista_canciones_usuario";
+	String ATR_LISTAS_USUARIOS = "lista_usuarios";
 
 }

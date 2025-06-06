@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="styles/style_variables.css" />
-    <link rel="stylesheet" href="styles/style_login.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/style_login.css" />
 </head>
 <body>
 
-<%@include file="includes/cabecera.jsp" %>
+
 
 <main>
     <section class="mod_container">
@@ -40,7 +40,7 @@
     </section>
 </main>
 
-<%@include file="includes/pie.jsp" %>
+
 <script src="JS/HashLogin.js"></script>
 </body>
 </html>
