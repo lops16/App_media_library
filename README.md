@@ -8,7 +8,6 @@ Para poder clonar el proyecto
 * Java JDK17
 * Eclipse V 2025-3
 * Mysql sever V8.0
-* 
 #### Librerias descargads de Maven
 * mysql diver j 9.3.0
 * lombok
@@ -16,8 +15,8 @@ Para poder clonar el proyecto
 # Organizacion del proyecto
 ### organizacion de paquetes
 * **com.ipartek**: este paquete contendra las claves java que cargara el proyecto
-* * **com.ipartek.modelo**: Gestion de la DB
-* * **com.ipartek.modelo.dto**: Clases que se encargan de enlazar con las tablas de la BD
+* **com.ipartek.modelo**: Gestion de la DB
+* **com.ipartek.modelo.dto**: Clases que se encargan de enlazar con las tablas de la BD
 
 # Organizacion de las vistas
 La interfaz de usuario estan relizada con **HTML** y **CSS**, los archivos estan en formato JSP utilizando la sintaxis antigua.
