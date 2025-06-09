@@ -43,7 +43,7 @@ CREATE TABLE `canciones` (
 
 LOCK TABLES `canciones` WRITE;
 /*!40000 ALTER TABLE `canciones` DISABLE KEYS */;
-INSERT INTO `canciones` VALUES (1,'Bohemian Rhapsody','Rock','Canción icónica de Queen con múltiples estilos musicales.','https://www.youtube.com/watch?v=fJ9rUzIMcZQ',1);
+INSERT INTO `canciones` VALUES (1,'Bohemian Rhapsody','Rock','Canción icónica de Queen con múltiples estilos musicales.','https://www.youtube.com/watch?v=fJ9rUzIMcZQ',2);
 /*!40000 ALTER TABLE `canciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,7 +73,7 @@ CREATE TABLE `peliculas` (
 
 LOCK TABLES `peliculas` WRITE;
 /*!40000 ALTER TABLE `peliculas` DISABLE KEYS */;
-INSERT INTO `peliculas` VALUES (2,'Inception',148,'Un ladrón roba secretos del subconsciente usando sueños compartidos.','Ciencia ficción',1);
+INSERT INTO `peliculas` VALUES (2,'Inception',148,'Un ladrón roba secretos del subconsciente usando sueños compartidos.','Ciencia ficción',2);
 /*!40000 ALTER TABLE `peliculas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +127,7 @@ CREATE TABLE `series` (
 
 LOCK TABLES `series` WRITE;
 /*!40000 ALTER TABLE `series` DISABLE KEYS */;
-INSERT INTO `series` VALUES (2,'Stranger Things',4,'Un grupo de niños descubre experimentos secretos y criaturas de otra dimensión en su pequeño pueblo.',1),(3,'The Crown',6,'Dramatización de la vida de la Reina Isabel II desde su boda hasta los eventos políticos más recientes.',1),(4,'Dark',3,'Un niño desaparece en un pueblo alemán, lo que revela secretos familiares y un enigma temporal que abarca generaciones.',1),(5,'The Mandalorian',3,'Un cazarrecompensas viaja por la galaxia cumpliendo misiones mientras protege a una criatura misteriosa.',1),(6,'Sherlock',4,'Una moderna adaptación de Sherlock Holmes en Londres, resolviendo crímenes con ingenio y tecnología.',1),(7,'Breaking Bad',5,'Un profesor de química con cáncer comienza a fabricar metanfetamina para asegurar el futuro de su familia.',1),(8,'The Office (USA)',9,'Versión estadounidense de la comedia sobre la vida en una oficina.',1),(12,'Chernobyl',1,'Miniserie sobre el desastre nuclear de Chernóbil y las personas que arriesgaron su vida para contenerlo.',1),(14,'jrjr',4,'dafefe',3);
+INSERT INTO `series` VALUES (2,'Stranger Things',4,'Un grupo de niños descubre experimentos secretos y criaturas de otra dimensión en su pequeño pueblo.',2),(3,'The Crown',6,'Dramatización de la vida de la Reina Isabel II desde su boda hasta los eventos políticos más recientes.',2),(4,'Dark',3,'Un niño desaparece en un pueblo alemán, lo que revela secretos familiares y un enigma temporal que abarca generaciones.',2),(5,'The Mandalorian',3,'Un cazarrecompensas viaja por la galaxia cumpliendo misiones mientras protege a una criatura misteriosa.',2),(6,'Sherlock',4,'Una moderna adaptación de Sherlock Holmes en Londres, resolviendo crímenes con ingenio y tecnología.',2),(7,'Breaking Bad',5,'Un profesor de química con cáncer comienza a fabricar metanfetamina para asegurar el futuro de su familia.',2),(8,'The Office (USA)',9,'Versión estadounidense de la comedia sobre la vida en una oficina.',2),(12,'Chernobyl',1,'Miniserie sobre el desastre nuclear de Chernóbil y las personas que arriesgaron su vida para contenerlo.',2),(14,'jrjr',4,'dafefe',3);
 /*!40000 ALTER TABLE `series` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,7 +156,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',1),(2,'galea','qwer',2),(3,'trolcito','5678',3),(4,'test','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08',2);
+INSERT INTO `usuarios` VALUES (1,'admin','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',1),(2,'galea','f6f2ea8f45d8a057c9566a33f99474da2e5c6a6604d736121650e2730c6fb0a3',2),(3,'trolcito','f45d0fcdb728031032621bbee94513ec2de27e9d4b8fe6b2c5346ca19b941457',3),(4,'test','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08',2);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,6 +296,28 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_cambiar_pass_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cambiar_pass_usuario`(
+in p_id int,
+in p_new_pass varchar(255)
+)
+BEGIN
+update usuarios set pass = p_new_pass where id = p_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_editar_cancion` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -386,6 +408,51 @@ BEGIN
         num_temporadas = p_num_temporadas,
         descripcion_serie = p_descripcion_serie
     WHERE id = p_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_editar_usuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_editar_usuario`(
+in p_pass varchar(255),
+in p_fk_rol int,
+in p_id int
+)
+BEGIN
+	update usuarios set pass = p_pass, fk_rol = p_fk_rol where id = p_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_editar_usuario_rol` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_editar_usuario_rol`(
+in p_fk_rol int,
+in p_id int
+)
+BEGIN
+	update usuarios set fk_rol = p_fk_rol where id = p_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -623,6 +690,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_obtener_todos_roles` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_obtener_todos_roles`()
+BEGIN
+select * from roles;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_obtener_usuarios_todos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -684,7 +770,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_usuarios_bloquear` */;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_usuario_obtener_por_id` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -694,32 +780,11 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_bloquear`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario_obtener_por_id`(
 in p_id int
 )
 BEGIN
-	update usuarios set fk_rol = 4 where id = p_id;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_usuarios_desbloquear` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_desbloquear`(
-in p_id int
-)
-BEGIN
-	update usuarios set fk_rol = 2 where id = p_id;
+select * from v_usuarios where id = p_id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -830,4 +895,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-05 13:52:59
+-- Dump completed on 2025-06-09 14:04:08
