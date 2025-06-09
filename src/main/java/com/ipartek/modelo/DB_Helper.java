@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.ipartek.modelo.dto.Cancion;
 import com.ipartek.modelo.dto.Pelicula;
+import com.ipartek.modelo.dto.Rol;
 import com.ipartek.modelo.dto.Serie;
 import com.ipartek.modelo.dto.Usuario;
 import com.ipartek.modelo.dto.V_Canciones;
@@ -460,6 +461,72 @@ public class DB_Helper implements I_Constantes{
 			return null;
 		}
 		
+	}
+	public List<Rol> obtenerRoles(Connection con) {
+		try {
+			List<Rol> lista = new ArrayList<Rol>();
+			CallableStatement cstmt = con.prepareCall(SP_OBTENER_TODOS_ROLES);
+			
+			cstmt.execute();
+		    ResultSet rs = cstmt.getResultSet();
+		    
+		    while (rs.next()) {
+		    Rol r = new Rol();
+		        r.setId(rs.getInt(ROLES_ID_ROL));
+		        r.setRol(rs.getString(ROLES_ROL));
+		        
+
+		        lista.add(r);
+		    }
+		    
+		    return lista;
+		    
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public Cancion obtenerCancionPorId(int id, Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Usuario obtenerUsuarioPorId(int id, Connection con) {
+		try {
+			V_Usuarios user = new V_Usuarios();
+			CallableStatement cstmt = con.prepareCall(SP_OBTENER_USUARIO_POR_ID);
+
+			cstmt.setInt(1, id);
+
+			cstmt.execute();
+			ResultSet rs = cstmt.getResultSet();
+			int contador = 0;
+			while (rs.next()) {
+
+				user.setId(rs.getInt(USUARIO_ID));
+				user.setUser(rs.getString(USUARIO_USUARIO));
+				user.setPass(rs.getString(USUARIO_PASSWORD));
+				user.setFk_rol(rs.getInt(USUARIO_FK_ROL));
+				user.setRol(rs.getString(ROLES_ROL));
+		        
+		        contador ++;
+
+			}
+			if(contador <= 1) {
+				System.out.println(user);
+				return user;
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public Pelicula obtenerPeliculaPorId(int id, Connection con) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

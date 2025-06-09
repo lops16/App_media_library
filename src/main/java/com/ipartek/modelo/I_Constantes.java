@@ -53,7 +53,7 @@ public interface I_Constantes {
 
 	String TABLA_ROLES = "roles";
 
-	String ROLES_ID_ROL = "id_rol";
+	String ROLES_ID_ROL = "id";
 	String ROLES_ROL = "rol";
 
 	// STORED PROCEDURES
@@ -67,6 +67,10 @@ public interface I_Constantes {
 	String SP_OBTENER_TODOS_USUARIOS = "call sp_obtener_usuarios_todos();";
 	String SP_OBTENER_ID_USUARIO = "call sp_obtener_usuario_id_nombre(?);";
 	String SP_USUARIO_BLOQUEAR="call sp_usuarios_bloquear(?);";
+	String SP_OBTENER_TODOS_ROLES = "call sp_obtener_todos_roles();";
+	
+	String SP_MODIFICAR_ROL = "call sp_editar_usuario_rol(?, ?);";
+	String SP_MODIFICAR_PASS = "call sp_cambiar_pass_usuario(?, ?);";
 	
 	String SP_SERIES_INSERTAR = "call sp_insertar_serie(?, ?, ?, ?);";
 	String SP_PELICULAS_INSERTAR ="call sp_insertar_pelicula(?, ?, ?, ?, ?);";
@@ -83,6 +87,7 @@ public interface I_Constantes {
 	String SP_OBTENER_SERIE_POR_ID="call jsp_media_app.sp_serie_obtener_por_id(?)";
 	String SP_OBTENER_PELICULAS_POR_ID="";
 	String SP_OBTENER_CANCIONES_POR_ID="";
+	String SP_OBTENER_USUARIO_POR_ID = "sp_usuario_obtener_por_id(?);";
 	
 	String ATR_LISTAS_SERIES = "lista_series";
 	String ATR_SERIE = "serie_sola";
@@ -92,5 +97,6 @@ public interface I_Constantes {
 	String ATR_LISTAS_CANCIONES = "lista_canciones";
 	String ATR_LISTAS_CANCIONES_USUARIO = "lista_canciones_usuario";
 	String ATR_LISTAS_USUARIOS = "lista_usuarios";
+	String ATR_LISTA_ROLES = "lista_roles";
 
 }

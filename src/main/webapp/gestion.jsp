@@ -1,3 +1,4 @@
+<%@page import="com.ipartek.modelo.dto.Rol"%>
 <%@page import="com.ipartek.modelo.dto.V_Usuarios"%>
 <%@page import="com.ipartek.modelo.dto.Usuario"%>
 <%@page import="com.ipartek.modelo.dto.V_Canciones"%>
@@ -27,6 +28,11 @@
 	listaUsuarios = new ArrayList<>(); if
 	(request.getAttribute(I_Constantes.ATR_LISTAS_USUARIOS) != null) {
 	listaUsuarios = (List<V_Usuarios>) request.getAttribute(I_Constantes.ATR_LISTAS_USUARIOS); } %>
+	
+	<% List<Rol>
+	listaRoles = new ArrayList<>(); if
+	(request.getAttribute(I_Constantes.ATR_LISTA_ROLES) != null) {
+	listaRoles = (List<Rol>) request.getAttribute(I_Constantes.ATR_LISTA_ROLES); } %>
 	
 	<%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -87,7 +93,7 @@
 								<td><%= serie.getDescripcion_serie() %></td>
 								<td><%= serie.getUsername() %></td>
 								<td class="options">
-									<a href="FrmModificarSerie?p_id=<%= serie.getId() %>">
+									<a href="FrmModificar?tipo=serie&p_id=<%= serie.getId() %>">
 										<!-- icono editar -->
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 											<path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
@@ -149,7 +155,7 @@
 					            <td><%= pelicula.getEstilo_pelicula() %></td>
 					            <td><%= pelicula.getUsername() %></td>
 					            <td class="options">
-					                <a href="FrmModificarPelicula?p_id=<%= pelicula.getId() %>">
+					                <a href="FrmModificar?tipo=pelicula&p_id=<%= pelicula.getId() %>">
 					                    <!-- icono editar -->
 					                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 					                        <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
@@ -211,7 +217,7 @@
 					            <td><%= canciones.getEnlace() %></td>
 					            <td><%= canciones.getUsername() %></td>
 					            <td class="options">
-					                <a href="FrmModificarCancion?p_id=<%= canciones.getId() %>">
+					                <a href="FrmModificar?tipo=cancion&p_id=<%= canciones.getId() %>">
 					                    <!-- icono editar -->
 					                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 					                        <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>
@@ -240,11 +246,17 @@
 						<label for="p_user">Usuario</label>
 						<input type="text" id="p_user" name="p_user" required /><br />
 						
+						<label for="p_pass">Contraseña</label>
+						<input type="text" id="p_pass" name="p_pass" required /><br />
+						
 						<label for="p_rol">Rol</label>
-						<input type="text" id="p_rol" name="p_rol" required  /><br />
-			
-				
-						<button type="submit" class="inpBtn">Modificar</button>
+						<select type="text" id="p_rol" name="p_rol" required  />
+							 <% for (Rol r : listaRoles) { %>
+	                        	<option value="<%= r.getId() %>"><%= r.getRol() %></option>
+	                    <% } %>
+						</select><br />
+
+						<button type="submit" class="inpBtn">Registrar</button>
 					</form>
 				</section>
 				<section class="table_container">
@@ -264,7 +276,7 @@
 								<td><%= u.getUser() %></td>
 								<td><%= u.getRol() %></td>
 								<td class="options">
-									<a href="FrmModificarSerie?p_id=<%= u.getId() %>">
+									<a href="FrmModificar?tipo=usuario&p_id=<%= u.getId() %>">
 										<!-- icono editar -->
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 											<path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/>

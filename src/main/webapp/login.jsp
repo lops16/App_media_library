@@ -18,7 +18,7 @@
 <main>
     <section class="mod_container">
         <section class="form_container_login">
-            <form id="loginForm" action="HacerLogin" method="get" class="form_box">
+            <form id="loginForm" action="HacerLogin" method="post" class="form_box">
 
 
                 <label for="p_Titulo" hidden="">Usuario:</label>

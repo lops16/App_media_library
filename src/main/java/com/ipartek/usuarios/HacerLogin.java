@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.ipartek.modelo.DB_Helper;
 import com.ipartek.modelo.I_Constantes;
+import com.ipartek.modelo.dto.Rol;
 import com.ipartek.modelo.dto.Usuario;
 import com.ipartek.modelo.dto.V_Usuarios;
 
@@ -106,11 +107,13 @@ public class HacerLogin extends HttpServlet implements I_Constantes{
 		    }
 		    
 		    List<V_Usuarios>listaUsuarios = db.obtenerTodosUsuarios(con);
+		    List<Rol>listaRoles = db.obtenerRoles(con);
 		    System.out.println(listaUsuarios);
 		    db.desconectar(con);
 		    
 			request.setAttribute(ATR_LISTAS_USUARIOS, listaUsuarios);
-		    response.sendRedirect(ruta);
+			request.setAttribute(ATR_LISTA_ROLES, listaRoles);
+			request.getRequestDispatcher(ruta).forward(request, response);
 		    
 		
 	}
