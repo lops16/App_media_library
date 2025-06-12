@@ -5,8 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Arrays;
 import java.util.List;
 
 import com.ipartek.modelo.DB_Helper;
@@ -16,6 +19,7 @@ import com.ipartek.modelo.dto.Pelicula;
 import com.ipartek.modelo.dto.Serie;
 import com.ipartek.modelo.dto.Usuario;
 import com.ipartek.modelo.dto.V_Series;
+import com.ipartek.usuarios.ValidarPermisos;
 
 
 @WebServlet("/FrmModificar")
@@ -30,7 +34,7 @@ public class FrmModificar extends HttpServlet implements I_Constantes{
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession(); 
 		String tipo = request.getParameter("tipo");
 		
 		int id = 0;
@@ -42,43 +46,51 @@ public class FrmModificar extends HttpServlet implements I_Constantes{
 		Connection con = db.conectar();
 		
 		String ruta = "";
+		List<Integer> rolesPermitidos = Arrays.asList(1, 2);
 		List<V_Series> listaSeries = db.obtenerTodasSeries(con);
 		
-		
-		switch (tipo != null ? tipo.toLowerCase() : "") {
-        case "serie":
-            Serie serie = db.obtenerSeriePorId(id, con);
-            request.setAttribute(ATR_SERIE, serie);
-            request.setAttribute(ATR_LISTAS_SERIES, listaSeries);
-            ruta = JSP_FRMMOD_SERIE;
-            
-            break;
-        
-        case "cancion":
-        	//to do
-            Cancion cancion = db.obtenerCancionPorId(id, con);
-            request.setAttribute("entidad", cancion);
-            request.getRequestDispatcher("/editarCancion.jsp").forward(request, response);
-            break;
-        
-        case "usuario":
-        	//to do
-            Usuario usuario = db.obtenerUsuarioPorId(id, con);
-            request.setAttribute("entidad", usuario);
-            request.getRequestDispatcher("/editarUsuario.jsp").forward(request, response);
-            break;
-        
-        case "pelicula":
-        	// to do
-            Pelicula pelicula = db.obtenerPeliculaPorId(id, con);
-            request.setAttribute("entidad", pelicula);
-            request.getRequestDispatcher("/editarPelicula.jsp").forward(request, response);
-            break;
-        
-        default:
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo no válido");
-            break;
+		if (ValidarPermisos.validarUsuarioYRol(session, rolesPermitidos)) {
+			switch (tipo != null ? tipo.toLowerCase() : "") {
+	        case "serie":
+	            Serie serie = db.obtenerSeriePorId(id, con);
+	            request.setAttribute(ATR_SERIE, serie);
+	            request.setAttribute(ATR_LISTAS_SERIES, listaSeries);
+	            ruta = JSP_FRMMOD_SERIE;
+	            
+	            break;
+	        
+	        case "cancion":
+	        	//to do
+	            Cancion cancion = db.obtenerCancionPorId(id, con);
+	            request.setAttribute("entidad", cancion);
+	            request.getRequestDispatcher("/editarCancion.jsp").forward(request, response);
+	            break;
+	        
+	        case "usuario":
+	        	//to do
+	            Usuario usuario = db.obtenerUsuarioPorId(id, con);
+	            request.setAttribute("entidad", usuario);
+	            request.getRequestDispatcher("/editarUsuario.jsp").forward(request, response);
+	            break;
+	        
+	        case "pelicula":
+	        	// to do
+	            Pelicula pelicula = db.obtenerPeliculaPorId(id, con);
+	            request.setAttribute("entidad", pelicula);
+	            request.getRequestDispatcher("/editarPelicula.jsp").forward(request, response);
+	            break;
+	        
+	        default:
+	            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tipo no válido");
+	            break;
+			}
+		} else {
+		    request.getSession().setAttribute("error", "No estás autorizado para hacer eso");
+		    ruta = JSP_LOGIN;
 		}
+		
+		
+		
 		
 		db.desconectar(con);
 				

@@ -1,6 +1,6 @@
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
     event.preventDefault(); 
-
+	
     const passwordField = document.getElementById("p_pass");
     const password = passwordField.value;
 

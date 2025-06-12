@@ -31,12 +31,13 @@
 
                 <button type="submit" class="inpBtn">Login</button>
             </form>
-        </section>
-        <% if(session.getAttribute("error") != null) { %>
+            <% if(session.getAttribute("error") != null) { %>
 	    	<section class="error_mensaje">
 	    		<p><%= session.getAttribute("error") %></p>
 	    	</section>
 		<% } %>
+        </section>
+        
     </section>
 </main>
 

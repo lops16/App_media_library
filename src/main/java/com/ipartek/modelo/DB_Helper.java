@@ -100,6 +100,7 @@ public class DB_Helper implements I_Constantes{
 		        user.setId(rs.getInt(USUARIO_ID));
 		        user.setUser(rs.getString(USUARIO_USUARIO));
 		        user.setRol(rs.getString(ROLES_ROL));
+		        user.setFk_rol(rs.getInt(USUARIO_FK_ROL));
 		        
 		        lista.add(user);
 		        

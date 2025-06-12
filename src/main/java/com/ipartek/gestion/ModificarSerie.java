@@ -9,14 +9,18 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.Arrays;
+import java.util.List;
 
 import com.ipartek.modelo.DB_Helper;
+import com.ipartek.modelo.I_Constantes;
 import com.ipartek.modelo.dto.Serie;
 import com.ipartek.modelo.dto.Usuario;
+import com.ipartek.usuarios.ValidarPermisos;
 
 
 @WebServlet("/ModificarSerie")
-public class ModificarSerie extends HttpServlet {
+public class ModificarSerie extends HttpServlet implements I_Constantes{
 	private static final long serialVersionUID = 1L;
        
  
@@ -64,14 +68,24 @@ public class ModificarSerie extends HttpServlet {
 
 		Serie s = new Serie(id, serie, numTemporadas, descripcion, fk_usuario);
 
+		String ruta = "MenuGestion";
+
 		DB_Helper db = new DB_Helper();
 		Connection con = db.conectar();
 
-		db.modificarSerie(s, con);
+		List<Integer> rolesPermitidos = Arrays.asList(1, 2);
+
+		if (ValidarPermisos.validarUsuarioYRol(session, rolesPermitidos)) {
+			db.modificarSerie(s, con);
+		    ruta = "MenuGestion";
+		} else {
+		    request.getSession().setAttribute("error", "No estás autorizado para hacer eso");
+		    ruta = JSP_LOGIN;
+		}
 
 		db.desconectar(con);
 
-		response.sendRedirect("MenuGestion"); 
+		response.sendRedirect(ruta);  
 	}
 
 	

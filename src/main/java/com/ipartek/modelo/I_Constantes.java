@@ -76,9 +76,9 @@ public interface I_Constantes {
 	String SP_PELICULAS_INSERTAR ="call sp_insertar_pelicula(?, ?, ?, ?, ?);";
 	String SP_CANCIONES_INSERTAR = "call sp_insertar_cancion(?, ?, ?, ?, ?);";
 	
-	String SP_BORRAR_SERIE = "call sp_editar_serie_id(?);";
-	String SP_BORRAR_CANCION = "call sp_editar_cancion_id(?);";
-	String SP_BORRAR_PELICULA = "call sp_editar_pelicula_id(?);";
+	String SP_BORRAR_SERIE = "call sp_borrar_serie_id(?);";
+	String SP_BORRAR_CANCION = "call sp_borrar_cancion_id(?);";
+	String SP_BORRAR_PELICULA = "call sp_borrar_pelicula_id(?);";
 	
 	String SP_MODIFICAR_SERIE = "call sp_editar_serie(?, ?, ?, ?, ?);";
 	String SP_MODIFICAR_CANCION = "call sp_editar_cancion(?, ?, ?, ?, ?);";
@@ -91,6 +91,7 @@ public interface I_Constantes {
 	
 	String ATR_LISTAS_SERIES = "lista_series";
 	String ATR_SERIE = "serie_sola";
+	String ATR_USUARIO = "usuario_solo";
 	String ATR_LISTAS_SERIES_USUARIO = "lista_series_usuario";
 	String ATR_LISTAS_PELICULAS = "lista_peliculas";
 	String ATR_LISTAS_PELICULAS_USUARIO = "lista_peliculas_usuario";
